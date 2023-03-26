@@ -4,3 +4,4 @@
 
 from .connect_on_exchange import connect_on_exchange
 from .start_connection import start_connection_bus
+from .validate_event import payload_conversor

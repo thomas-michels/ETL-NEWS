@@ -4,8 +4,7 @@ File to queue callback
 
 from typing import Any, NoReturn
 from kombu import Queue
-from app.configs import get_logger
-from app.exceptions import CallbackNotMethod, FunctionAnnotation
+from app.core.configs import get_logger
 
 _logger = get_logger(name=__name__)
 
@@ -64,14 +63,14 @@ class QueueCallback:
         try:
             return_type = function.__annotations__["return"]
             if return_type is not bool:
-                raise FunctionAnnotation()
+                raise Exception("FunctionAnnotation")
 
             self.__function = function
 
         except AttributeError as error:
             _logger.error(f"Error on set function in QueueCallback - {error}")
-            raise CallbackNotMethod()
+            raise Exception("CallbackNotMethod")
 
         except KeyError as error:
             _logger.error(f"Error on set function in QueueCallback - {error}")
-            raise FunctionAnnotation()
+            raise Exception("FunctionAnnotation")

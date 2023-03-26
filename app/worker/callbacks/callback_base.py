@@ -3,6 +3,7 @@
 """
 
 from abc import abstractmethod, ABC
+from app.core.shared_schemas import EventSchema
 
 
 class CallbackInterface(ABC):
@@ -11,7 +12,7 @@ class CallbackInterface(ABC):
     """
 
     @abstractmethod
-    def handle(self, message) -> bool:
+    def handle(self, message: EventSchema) -> bool:
         """
         This method handle message and returns a bool
 

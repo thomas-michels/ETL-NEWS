@@ -1,15 +1,15 @@
-import uvicorn
+"""
+Inicialize application
+"""
 
-from app.api.app import app
-from app.core.configs import get_environment
-
-_env = get_environment()
+import asyncio
+from app.api import run_api
+from app.worker import Worker
 
 
 if __name__ == "__main__":
-    uvicorn.run(
-        "main:app",
-        host=_env.APPLICATION_HOST,
-        port=_env.APPLICATION_PORT,
-        reload=True,
-    )
+    worker = asyncio.new_event_loop()
+    worker.run_in_executor(None, Worker)
+    
+    api = asyncio.new_event_loop()
+    api.run_in_executor(None, run_api)

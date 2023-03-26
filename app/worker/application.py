@@ -4,13 +4,13 @@ This module start connection with queues
 
 from app.worker.consumer import RegisterQueues
 from app.core.configs import get_logger
-from app.worker import KombuWorker
+from app.worker.consumer import KombuWorker
 from app.worker.utils import start_connection_bus
 
 _logger = get_logger(name=__name__)
 
 
-class Application:
+class Worker:
     """This class start connection and worker"""
 
     def __init__(self) -> None:
