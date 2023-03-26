@@ -18,7 +18,7 @@ for i in range(3):
         load_more_button = driver.find_element(by=By.XPATH, value="//button[contains(text(),'Carregar mais')]")
         print(load_more_button)
         load_more_button.click()
-        time.sleep(2)  # aguarde 2 segundos para a página carregar
+        driver.implicitly_wait(2) # aguarde 2 segundos para a página carregar
         print("click")
     except Exception as error:
         print(str(error))
@@ -27,4 +27,3 @@ for i in range(3):
 
 # Feche o driver do Selenium
 driver.quit()
-

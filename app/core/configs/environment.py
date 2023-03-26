@@ -10,8 +10,17 @@ class Environment(BaseSettings):
 
     APPLICATION_HOST: str = Field(default=None)
     APPLICATION_PORT: int = Field(default=None)
-    APPLICATION_NAME: str = Field(default="PaintingRoom")
+    APPLICATION_NAME: str = Field(default="ETL-NEWS")
+
     DATABASE_HOST: str = Field(default=None)
     DATABASE_NAME: str = Field(default=None)
     DATABASE_USER: str = Field(default=None)
     DATABASE_PASSWORD: str = Field(default=None)
+
+    RBMQ_HOST: str = Field(default=None)
+    RBMQ_USER: str = Field(default=None)
+    RBMQ_PASS: str = Field(default=None)
+    RBMQ_PORT: int = Field(default=None)
+    RBMQ_EXCHANGE: str = Field(default=None)
+
+    EXTRACT_CHANNEL: str = Field(default=None)

@@ -8,9 +8,9 @@ CREATE TABLE extract_news.post (
 	updated_at timestamp
 );
 
-CREATE TABLE extract_news.post_html (
+CREATE TABLE extract_news.raw_response (
 	id serial4 PRIMARY KEY,
-	html jsonb,
+	"data" jsonb,
 	created_at timestamp,
 	updated_at timestamp
 );
