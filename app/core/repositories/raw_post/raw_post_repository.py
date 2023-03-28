@@ -6,7 +6,7 @@ _env = get_environment()
 _logger = get_logger(__name__)
 
 
-class RawNewsRepository:
+class RawPostRepository:
     def __init__(self) -> None:
         self.__params = {
             "page": "1",

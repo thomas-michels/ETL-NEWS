@@ -1,4 +1,4 @@
-from app.core.repositories.raw_news import RawNewsRepository
+from app.core.repositories.raw_post import RawPostRepository
 from app.core.repositories.raw_response import RawResponseRepository
 from app.core.repositories.post import PostRepository
 from app.core.entities import Post
@@ -18,11 +18,11 @@ class PostServices:
     def __init__(
         self,
         raw_response_repository: RawResponseRepository,
-        raw_news_repository: RawNewsRepository,
+        raw_post_repository: RawPostRepository,
         post_repository: PostRepository,
     ) -> None:
         self.__raw_response_repository = raw_response_repository
-        self.__raw_news_repository = raw_news_repository
+        self.__raw_post_repository = raw_post_repository
         self.__post_repository = post_repository
 
     def start_extract(self, start_page: int = 0) -> bool:
@@ -37,7 +37,7 @@ class PostServices:
                 _logger.error(f"Stopping batch - page: {page}")
                 return False
 
-            raw_response = self.__raw_news_repository.get_raw_posts(
+            raw_response = self.__raw_post_repository.get_raw_posts(
                 page=page, page_size=_env.BATCH_SIZE
             )
 
