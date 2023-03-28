@@ -1,1 +1,1 @@
-from .news_composite import news_composer
+from .post_composite import post_composer
