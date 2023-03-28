@@ -30,6 +30,7 @@ CREATE TABLE extract_news.news(
 	link varchar(500),
 	description varchar(2500), 
 	author varchar(100),
+	inserted_at timestamp,
 	created_at timestamp,
 	updated_at timestamp
 );

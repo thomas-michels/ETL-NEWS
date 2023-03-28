@@ -1,6 +1,6 @@
 from ..base_repository import BaseRepository
 from app.core.db import DBConnection
-from app.core.entities import Post
+from app.core.entities import Post, PostInDB
 from app.core.configs import get_logger, get_environment
 
 _logger = get_logger(__name__)
@@ -33,3 +33,27 @@ class PostRepository(BaseRepository):
 
         except Exception as error:
             _logger.error(f"Some error happen on get_raw_response_by_id: {str(error)}")
+
+    def get_post_by_id(self, post_id: int) -> PostInDB:
+        query = """
+        SELECT
+            id,
+            title,
+            link,
+            created_at,
+            updated_at
+        FROM
+            extract_news.post
+        WHERE
+            id = %s;
+        """
+        try:
+            self.connection.execute(sql_statement=query, values=(post_id,))
+
+            result = self.connection.fetch()
+
+            if result:
+                return PostInDB(**result)
+
+        except Exception as error:
+            _logger.error(f"Some error happen on get_post_by_id: {str(error)}")

@@ -106,11 +106,20 @@ class PostServices:
 
                             post_entity = Post(title=title, link=link)
 
-                            self.__post_repository.insert(post_entity)
+                            post_id = self.__post_repository.insert(post_entity)
                             self.__post_repository.connection.commit()
                             _logger.info(
                                 f"New post - title: {post_entity.title}, url: {post_entity.link}"
                             )
+
+                            message = payload_conversor(
+                                raw_payload={
+                                    "sended_to": _env.EXTRACT_NEWS_CHANNEL,
+                                    "payload": {"post_id": post_id},
+                                }
+                            )
+                            producer = KombuProducer()
+                            producer.send_messages(message=message)
 
                 else:
                     _logger.warning(f"Raw response with id {id} not found")

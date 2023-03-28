@@ -26,7 +26,6 @@ class Environment(BaseSettings):
     EXTRACT_CHANNEL: str = Field(default=None)
     EXTRACT_POST_CHANNEL: str = Field(default=None)
     EXTRACT_NEWS_CHANNEL: str = Field(default=None)
-    POPULATE_NEWS_CHANNEL: str = Field(default=None)
 
     RAW_POSTS_URL: str = Field(default=None)
     BATCH_SIZE: int = Field(default=None)
