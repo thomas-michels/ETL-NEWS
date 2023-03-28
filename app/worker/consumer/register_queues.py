@@ -3,7 +3,7 @@
 """
 from app.worker.consumer.manager import QueueManager
 from app.core.configs import get_logger, get_environment
-from app.worker.callbacks import ExtractCallback
+from app.worker.callbacks import ExtractCallback, ExtractPostCallback
 
 
 _logger = get_logger(name=__name__)
@@ -22,6 +22,10 @@ class RegisterQueues:
 
         queue_manager.register_callback(
             _env.EXTRACT_CHANNEL, ExtractCallback().handle
+        )
+
+        queue_manager.register_callback(
+            _env.EXTRACT_POST_CHANNEL, ExtractPostCallback().handle
         )
 
         _logger.info("All queues started")

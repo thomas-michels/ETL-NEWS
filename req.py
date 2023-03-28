@@ -2,7 +2,6 @@ import requests
 from bs4 import BeautifulSoup
 import re
 
-url = "https://www.infomoney.com.br/ultimas-noticias/"
 regex = r'<a href="(.+?)"\s+title="(.+?)">'
 
 url = "https://www.infomoney.com.br/?infinity=scrolling"
@@ -15,7 +14,7 @@ payload={'page': '1',
 'query_args[pagename]': 'ultimas-noticias',
 'query_args[post_type][0]': 'guide',
 'query_args[post_type][1]': 'post',
-'query_args[posts_per_page]': '100',
+'query_args[posts_per_page]': '10',
 'query_args[post_type][2]': 'page',
 'query_args[post_type][3]': 'colunistas',
 'query_args[post_type][4]': 'patrocinados',
@@ -23,12 +22,9 @@ payload={'page': '1',
 'query_before': '2023-03-22 20:38:02',
 'last_post_date': '2023-03-22 18:17:24',
 'query_args[post_type][6]': 'web-story'}
-files=[
 
-]
-headers = {}
 
-response = requests.request("POST", url, headers=headers, data=payload, files=files)
+response = requests.request("POST", url, data=payload)
 json = response.json()
 soup = BeautifulSoup(json["html"], "html.parser")
 

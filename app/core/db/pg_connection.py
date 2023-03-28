@@ -25,7 +25,8 @@ class PGConnection(DBConnection):
         return self.cursor.fetchall() if all else self.cursor.fetchone()
 
     def close(self):
-        self.conn.close()
+        if self.conn:
+            self.conn.close()
 
     def __start_connection(self):
         self.conn = psycopg.connect(

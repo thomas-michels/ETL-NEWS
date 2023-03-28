@@ -31,6 +31,7 @@ class KombuWorker(ConsumerMixin):
             function = self.queues.get_function(infos["routing_key"])
             event_schema = payload_conversor(body)
             if event_schema:
+                _logger.info(f"Message: {body}")
                 if function(event_schema):
                     message.ack()
 
