@@ -1,11 +1,11 @@
-from pydantic import BaseModel, Field, HttpUrl
+from pydantic import BaseModel, Field
 from datetime import datetime
 
 
 class News(BaseModel):
     title: str = Field(example="post")
     description: str = Field(example="post")
-    link: HttpUrl = Field(example="www.url.com")
+    link: str = Field(example="www.url.com")
     author: str = Field(example="post")
     inserted_at: datetime = Field(example=str(datetime.now()))
 

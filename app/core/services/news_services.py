@@ -43,4 +43,6 @@ class NewsServices:
                 inserted_at=date_published,
             )
 
-            return self.__news_repository.insert(news=news)
+            news_id = self.__news_repository.insert(news=news)
+            self.__news_repository.connection.commit()
+            return news_id

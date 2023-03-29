@@ -13,10 +13,9 @@ class RawNewsRepository:
 
         match response.status_code:
             case 200:
-                json = response.json()
 
                 raw_news = RawNews(link=link)
-                raw_news.data["html"] = json["html"]
+                raw_news.data["html"] = response.text
 
                 return raw_news
 

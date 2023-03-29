@@ -16,20 +16,14 @@ class NewsRepository(BaseRepository):
         INSERT
             INTO
             extract_news.news
-        (title,
-            link,
-            description,
-            author,
-            created_at,
-            updated_at,
-            inserted_at)
+        (title, link, description, author, inserted_at, created_at, updated_at)
         VALUES(%s, %s, %s, %s, %s, NOW(), NOW())
         RETURNING id;
         """
         try:
             self.connection.execute(
                 sql_statement=query,
-                values=(news.link, news.description, news.author, news.inserted_at),
+                values=(news.title, news.link, news.description, news.author, news.inserted_at),
             )
 
             result = self.connection.fetch()

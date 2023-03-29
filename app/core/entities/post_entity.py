@@ -1,11 +1,11 @@
 from pydantic.generics import GenericModel
-from pydantic import Field, HttpUrl
+from pydantic import Field
 from datetime import datetime
 
 
 class Post(GenericModel):
     title: str = Field(example="post")
-    link: HttpUrl = Field(example="www.url.com")
+    link: str = Field(example="www.url.com")
 
 
 class PostInDB(Post):

@@ -11,15 +11,6 @@ class ExtractPostCallback(CallbackInterface):
     def handle(self, message: EventSchema) -> bool:
         services = post_composer()
         if services.extract_posts(start_on=message.payload.get("start_on", 0)):
-            message = payload_conversor(
-                raw_payload={
-                    "sended_to": _env.EXTRACT_NEWS_CHANNEL,
-                    "payload": {},
-                }
-            )
-
-            producer = KombuProducer()
-            producer.send_messages(message=message)
             return True
         
         return False

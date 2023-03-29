@@ -1,11 +1,11 @@
-from pydantic import BaseModel, Field, HttpUrl
+from pydantic import BaseModel, Field
 from datetime import datetime
 from typing import Dict
 
 
 class RawNews(BaseModel):
     title: str = Field(example="post", default="")
-    link: HttpUrl = Field(example="www.url.com")
+    link: str = Field(example="www.url.com")
     data: Dict[str, str | int] = Field(default={})
 
 
