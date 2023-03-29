@@ -35,4 +35,31 @@ class NewsRepository(BaseRepository):
             _logger.error(f"Some error happen on get_raw_response_by_id: {str(error)}")
 
     def get_all_news(self) -> List[NewsInDB]:
-        ...
+        query = """
+        SELECT
+            id,
+            title,
+            link,
+            description,
+            author,
+            created_at,
+            updated_at,
+            inserted_at
+        FROM
+            extract_news.news;
+        """
+        try:
+            self.connection.execute(sql_statement=query)
+
+            results = self.connection.fetch(all=True)
+
+            news = []
+
+            for result in results:
+                news.append(NewsInDB(**result))
+
+            return news
+
+        except Exception as error:
+            _logger.error(f"Some error happen on get_raw_response_by_id: {str(error)}")
+

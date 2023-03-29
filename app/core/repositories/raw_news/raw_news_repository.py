@@ -1,15 +1,16 @@
 from app.core.entities import RawNews
 import requests
-from app.core.configs import get_environment, get_logger
+from app.core.configs import get_logger
+import time
 
 _logger = get_logger(__name__)
-_env = get_environment()
 
 
 class RawNewsRepository:
 
     def get_news(self, link: str) -> RawNews:
         response = requests.request("GET", link)
+        time.sleep(1)
 
         match response.status_code:
             case 200:

@@ -1,8 +1,9 @@
 from app.core.repositories.raw_news import RawNewsRepository
 from app.core.repositories.post import PostRepository
 from app.core.repositories.news import NewsRepository
-from app.core.entities import News
+from app.core.entities import News, NewsInDB
 from bs4 import BeautifulSoup
+from typing import List
 
 
 class NewsServices:
@@ -46,3 +47,8 @@ class NewsServices:
             news_id = self.__news_repository.insert(news=news)
             self.__news_repository.connection.commit()
             return news_id
+
+    def get_all_news(self) -> List[NewsInDB]:
+        news = self.__news_repository.get_all_news()
+
+        return news

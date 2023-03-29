@@ -51,7 +51,7 @@ class PostServices:
             else:
                 fail_count += 1
 
-            time.sleep(0.5)
+            time.sleep(1)
 
         if page < (_env.BATCH_SIZE - 1):
             message = payload_conversor(

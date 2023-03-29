@@ -7,7 +7,7 @@ class News(BaseModel):
     description: str = Field(example="post")
     link: str = Field(example="www.url.com")
     author: str = Field(example="post")
-    inserted_at: datetime = Field(example=str(datetime.now()))
+    inserted_at: datetime = Field(default=None, example=str(datetime.now()))
 
 
 class NewsInDB(News):
