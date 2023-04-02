@@ -36,17 +36,10 @@ class NewsRepository(BaseRepository):
 
     def get_all_news(self) -> List[NewsInDB]:
         query = """
-        SELECT
-            id,
-            title,
-            link,
-            description,
-            author,
-            created_at,
-            updated_at,
-            inserted_at
-        FROM
-            extract_news.news;
+        SELECT 
+            *
+        FROM extract_news.news
+        WHERE link LIKE '%/negocios/%';
         """
         try:
             self.connection.execute(sql_statement=query)
